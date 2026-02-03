@@ -1,0 +1,51 @@
+RPT SWI Configuration File
+Copy this to ~/.config/rpt-swi/settings.yaml
+
+database:
+path: ~/.config/rpt-swi/devices.db
+backup_interval: 24 # hours
+cleanup_days: 30
+
+scanner:
+default_timeout: 30 # seconds
+max_threads: 50
+scan_types:
+- quick
+- arp
+- full
+
+firewall:
+chain_name: "RPT-SWI"
+default_action: "DROP"
+logging_enabled: true
+auto_backup: true
+
+monitoring:
+enabled: false
+interval: 300 # seconds
+alert_on_new_device: true
+
+notifications:
+enabled: false
+email:
+enabled: false
+smtp_server: "smtp.gmail.com"
+smtp_port: 587
+smtp_user: ""
+smtp_password: ""
+recipient: ""
+telegram:
+enabled: false
+bot_token: ""
+chat_id: ""
+
+ui:
+color_enabled: true
+show_progress: true
+default_view: "table"
+
+logging:
+level: "INFO"
+file: "/var/log/rpt-swi/rpt_swi.log"
+max_size_mb: 10
+backup_count: 5

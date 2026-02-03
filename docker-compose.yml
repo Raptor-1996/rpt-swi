@@ -1,0 +1,145 @@
+version: '3.8'
+
+services:
+  rpt-swi:
+    build: .
+    container_name: rpt-swi
+    restart: unless-stopped
+    network_mode: host  # نیاز به دسترسی کامل به شبکه
+    privileged: true    # نیاز به دسترسی root برای iptables
+    volumes:
+      # ذخیره تنظیمات و داده‌ها
+      - ./data:/app/data:rw
+      - ./config:/app/config:rw
+      - ./logs:/var/log/rpt-swi:rw
+      # mount پیکربندی سیستم
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - TZ=Asia/Tehran
+      - PYTHONUNBUFFERED=1
+      - RPT_SWI_MODE=production
+    cap_add:
+      - NET_ADMIN        # برای دسترسی شبکه
+      - NET_RAW          # برای packet sniffing
+      - SYS_ADMIN        # برای مدیریت سیستم
+    security_opt:
+      - seccomp=unconfined
+    command: ["--help"]
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  rpt-swi-web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    container_name: rpt-swi-web
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/app/data:rw
+      - ./config:/app/config:rw
+    environment:
+      - RPT_SWI_API_URL=http://rpt-swi:5000
+      - FLASK_DEBUG=0
+    depends_on:
+      - rpt-swi-api
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  rpt-swi-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: rpt-swi-api
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data:/app/data:rw
+      - ./config:/app/config:rw
+    environment:
+      - RPT_SWI_MODE=api
+      - FLASK_DEBUG=0
+      - SECRET_KEY=${SECRET_KEY:-your-secret-key-here}
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  rpt-swi-db:
+    image: postgres:14-alpine
+    container_name: rpt-swi-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=rpt_swi
+      - POSTGRES_USER=rpt_user
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-ChangeThisPassword!}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "5432:5432"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  rpt-swi-redis:
+    image: redis:7-alpine
+    container_name: rpt-swi-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  rpt-swi-monitor:
+    image: grafana/grafana:9.0.0
+    container_name: rpt-swi-monitor
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    ports:
+      - "3000:3000"
+    depends_on:
+      - rpt-swi-api
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  grafana_data:
+    driver: local
+
+networks:
+  default:
+    name: rpt-swi-network
+    driver: bridge

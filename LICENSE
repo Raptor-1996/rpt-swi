@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 Raptor96
+Copyright (c) 2026 Raptor-1996
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,80 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+===============================================================================
+
+Additional Terms for Network Security Usage:
+
+1. Ethical Use: This software is intended for legitimate network security
+   purposes only, such as:
+   - Monitoring your own networks
+   - Educational purposes
+   - Security research with proper authorization
+   - Network administration with proper permissions
+
+2. Prohibited Uses: You may NOT use this software for:
+   - Unauthorized network access or intrusion
+   - Violating others' privacy
+   - Illegal activities of any kind
+   - Network attacks or denial of service
+   - Any activity that violates applicable laws
+
+3. Responsibility: The user assumes full responsibility for any use of this
+   software. The author is not liable for any misuse or damage caused by
+   this software.
+
+4. Compliance: Users must comply with all applicable local, national, and
+   international laws and regulations regarding network security and privacy.
+
+5. Authorization: Always obtain proper authorization before scanning or
+   monitoring any network that you do not own or administrate.
+
+===============================================================================
+
+Third-Party Components:
+
+This software includes or may include the following third-party components:
+
+1. Python-iptables - BSD License
+2. Scapy - GPLv2 License
+3. Colorama - BSD License
+4. Tabulate - MIT License
+5. Requests - Apache 2.0 License
+
+Refer to the respective component licenses for more information.
+
+===============================================================================
+
+Disclaimer of Warranty:
+
+THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.
+EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER
+PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER
+EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE
+QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE
+DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+
+===============================================================================
+
+Limitation of Liability:
+
+IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY
+COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS
+PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL,
+INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE
+THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED
+INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE
+PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY
+HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+===============================================================================
+
+Contact Information:
+
+For questions about this license or the software, contact:
+- Email: EbiRom1996@gmail.com
+- GitHub: https://github.com/Raptor-1996
+
+Last Updated: January 2026
